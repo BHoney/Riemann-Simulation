@@ -26,6 +26,10 @@ section {
 	border-radius: 5px;
 	padding: 5px;
 }
+#errorAlert{
+	color: red;
+	text-align: left;
+}
 .noShow{
 	display: none;
 }
