@@ -26,6 +26,12 @@ section {
 	border-radius: 5px;
 	padding: 5px;
 }
+.noShow{
+	display: none;
+}
+.show{
+	display: block;
+}
 #equationInputContainer label{
 	display:inline-block;
 	vertical-align: middle;
