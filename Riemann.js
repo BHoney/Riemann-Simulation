@@ -432,6 +432,9 @@ var Graph = {
             if (isFinite(yVal)) {
                 path = path + " v" + -1 * (parseFloat(yVal * this.widthy)) + " h" + (-1 * (((this.widthx * ((b - a) / N))))) + " v" + ((parseFloat(yVal * this.widthy)));
 
+            } else if (isNaN(yVal)) {
+                yVal = this.evaluateEquation(K + (1 / (this.resolution * 100)));
+                path = path + " v" + -1 * (parseFloat(yVal * this.widthy)) + " h" + (-1 * (((this.widthx * ((b - a) / N))))) + " v" + ((parseFloat(yVal * this.widthy)));
             } else {
                 if (this.evaluateEquation(xVal - .001) > 0) {
                     path = path + " v" + -1 * (parseFloat(parseInt($('#maxY').val()) * this.widthy)) + " m" + (-1 * (((this.widthx * ((b - a) / N))))) + " 0 v" + ((parseFloat(parseInt($('#maxY').val()) * this.widthy)));
@@ -462,6 +465,9 @@ var Graph = {
             if (isFinite(yVal)) {
                 path = path + " v" + -1 * (parseFloat(yVal * this.widthy)) + " h" + (this.widthx * ((b - a) / N)) + " v" + ((parseFloat(yVal * this.widthy)));
 
+            } else if (isNaN(yVal)) {
+                yVal = this.evaluateEquation(K + (1 / (this.resolution * 100)));
+                path = path + " v" + -1 * (parseFloat(yVal * this.widthy)) + " h" + (this.widthx * ((b - a) / N)) + " v" + ((parseFloat(yVal * this.widthy)));
             } else {
                 if (this.evaluateEquation(xVal + .001) > 0) {
                     path = path + " v" + -1 * (parseFloat(parseInt($('#maxY').val()) * this.widthy)) + " m" + (this.widthx * ((b - a) / N)) + " 0 v" + ((parseFloat(parseInt($('#maxY').val()) * this.widthy)));
@@ -494,6 +500,9 @@ var Graph = {
 
             yVal = this.evaluateEquation(K);
             if (isFinite(yVal)) {
+                path += "L" + (Graph.yAxisPosition + parseFloat((K) * (this.widthx))) + " " + (Graph.xAxisPosition - parseFloat(yVal * this.widthy)) + " ";
+            } else if (isNaN(yVal)) {
+                yVal = this.evaluateEquation(K + (1 / (this.resolution * 100)));
                 path += "L" + (Graph.yAxisPosition + parseFloat((K) * (this.widthx))) + " " + (Graph.xAxisPosition - parseFloat(yVal * this.widthy)) + " ";
             } else {
                 path += " V" + (Graph.xAxisPosition);
