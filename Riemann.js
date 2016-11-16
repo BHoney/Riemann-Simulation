@@ -61,9 +61,10 @@ var Graph = {
                 $('#equationList').empty();
                 Graph.createEquation();
                 Graph.drawGraph();
+                $('#errorAlert').empty().addClass('noShow');
             } catch (e) {
                 //change this to be below the equation in red text
-                alert("Error processing math...", "We've encountered an error when attempting to process the equation that you input.  Please confirm that the input is correct.  The following error was reported:  " + e, "error");
+                $('#errorAlert').empty().append("Error processing math...", "We've encountered an error when attempting to process the equation that you input.  Please confirm that the input is correct.  The following error was reported:  " + e, "error").addClass('show');
             }
 
 
