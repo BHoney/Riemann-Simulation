@@ -1,0 +1,121 @@
+body{
+	line-height: 1.47em;
+	min-width: 800px;
+	max-width: 1200px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:5px;
+	padding-right:5px;
+	font-family: Arial;
+}
+
+body h1, section h2, section h3, section h4{
+	text-align: center;
+	background-color: #104077;
+	padding-top:.5em;
+	padding-bottom:.5em;
+	color: white;
+	border-radius:1em;
+	margin-bottom: 5px;
+	margin-top:0px;
+}
+section {
+	border-style: solid;
+	border-color: black;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	padding: 5px;
+}
+#equationInputContainer label{
+	display:inline-block;
+	vertical-align: middle;
+}
+#equationInputContainer textarea{
+	display:inline-block;
+	vertical-align: middle;
+}
+
+#equationInputContainer, #optionsContainer{
+	margin-left:auto;
+	margin-right:auto;
+	display:table;
+	text-align: center;
+}
+
+#optionsContainer label{
+	display: inline-block;
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-left:10px;
+	padding-right: 10px;
+}
+.buttonContainer{
+	margin-left:auto;
+	margin-right:auto;
+	display:table;
+}
+.buttonContainer button{
+	border-color:#229933;
+	background-color:#229933;
+	color:white;
+	width:10em;
+	margin:0em 1em;
+}
+#equationInput{
+	border:none;
+
+}
+#graphContainer{/*This is temporary*/
+	display:none;
+}
+#leftGraphContainer, #rightGraphContainer{
+	display:inline-block;
+	text-align:center;
+	width:49%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#integralGraphContainer{
+	display:block;
+	text-align:center;
+	width:49%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#equationList{
+	padding-top:1em;
+	padding-bottom:1em;
+	text-align:center;
+}
+#equationDisplay, #equationNumDisplay, #equationDenomDisplay, #equationExpDisplay{
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+	display:inline-block;
+	position:relative;
+}
+#equationFormatShown{
+	position:relative;
+	left:0px;
+	right:0px;
+	margin:auto;
+}
+#tempEqSelect{
+	display:table;
+	margin-left:auto;
+	margin-right:auto;
+	display:none;
+}
+
+#numeratorPop, #denomPop, #expPop{
+	border: 1px solid black;
+	background-color:white;
+	padding:20px;
+	width: auto;
+	height: auto;
+}
+
+#numeratorPop p, #denomPop p, #expPop p{
+	text-align: center;
+	
+}

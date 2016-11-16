@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Riemann Sums and Integration simulation</title>
+    <link rel="stylesheet" type="text/css" href="Riemann.css">
+    <link rel="stylesheet" type="text/css" href="../Shared Libraries/sweetalert-master/dist/sweetalert.css">
+    <script type="text/javascript" src="../Shared Libraries/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="../Shared Libraries/sweetalert-master/dist/sweetalert-dev.js"></script>
+    <script type="text/javascript" src="../Shared Libraries/jquery-popup-overlay-gh-pages/jquery.popupoverlay.js"></script>
+    <script type="text/javascript" src="Riemann.js"></script>
+    <script type="text/javascript" async src="../Shared Libraries/MathJax-master/MathJax-master/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.7.0/math.js"></script>
+</head>
+
+<body>
+    <h1>Riemann Simulation</h1>
+    <section>
+        <h2>Equation</h2>
+        <div id='equationInputFormContainer'>
+            <form id="graphForm">
+                <div id='equationInputContainer'>
+                    <label for='equationInput'>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                                <mrow>
+                                    <mo>=</mo>
+                        </math>
+                    </label>
+                    <div id='equationDisplay'>
+                        <input id='equationInput' type="text"></input>
+                    </div>
+                    <div id='equationFormatShown'>
+                        ``
+                    </div>
+                    <div style="display:none;">
+                        <button type="button" id="xButton" disabled>x</button>
+                        <button type="button" id="powButton" disabled>
+                            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <msup>
+                                    <mi>x</mi>
+                                    <mi>a</mi>
+                                </msup>
+                            </math>
+                        </button>
+                        <button type="button" id="plusButton" disabled>+</button>
+                        <button type="button" id="plusButton" disabled>-</button>
+                        <button type="button" id="plusButton" disabled>&#xd7;</button>
+                        <button type="button" id="plusButton" disabled>&#xf7;</button>
+                    </div>
+                </div>
+                <div id="optionsContainer">
+                    <div>
+                        <label for='window'>Min x:
+                            <input id='minX' type="number" placeholder="Min X" value="-10"></input>
+                        </label>
+                        <label for='window'>Max x:
+                            <input id='maxX' type="number" placeholder="Min X" value="10"></input>
+                        </label>
+                    </div>
+                    <div>
+                        <label for='window'>Min y:
+                            <input id='minY' type="number" placeholder="Min X" value="-10"></input>
+                        </label>
+                        <label for='window'>Max y:
+                            <input id='maxY' type="number" placeholder="Min X" value="10"></input>
+                        </label>
+                    </div>
+                    <div>
+                        <label for='window'>Resolution:
+                            <input id='resolution' type="number" placeholder="Resolution" value="10"></input>
+                        </label>
+                    </div>
+                    <div>
+                        <label for='rectangles'>N:
+                            <input id='rectangles' type="number" placeholder="rectangle" value="4"></input>
+                        </label>
+                        <label for='a'>a:
+                            <input id='a' type="number" placeholder="a" value="0"></input>
+                        </label>
+                        <label for='b'>b:
+                            <input id='b' type="number" placeholder="b" value="2"></input>
+                        </label>
+                    </div>
+                </div>
+                <div id='tempEqSelect'>
+                    <form>
+                        <input type="radio" name="function" id='x' disabled>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mi>x</mi>
+                            </mrow>
+                        </math>
+                        </input>
+                        <input type="radio" name="function" id='xSquare' disabled>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <msup>
+                                    <mi>x</mi>
+                                    <mn>2</mn>
+                                </msup>
+                            </mrow>
+                        </math>
+                        </input>
+                        <input type="radio" name="function" id="xCube" disabled>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <msup>
+                                    <mi>x</mi>
+                                    <mn>3</mn>
+                                </msup>
+                            </mrow>
+                        </math>
+                        </input>
+                        <input type="radio" name="function" id="sin" disabled>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mi>sin</mi>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                        </math>
+                        </input>
+                        <input type="radio" name="function" id="cos" disabled>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mi>cos</mi>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                        </math>
+                        </input>
+                        <input type="radio" name="function" id="tan" disabled>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mi>tan</mi>
+                                <mfenced open="(" close=")">
+                                    <mi>x</mi>
+                                </mfenced>
+                            </mrow>
+                        </math>
+                        </input>
+                    </form>
+                </div>
+                <div class='buttonContainer'>
+                    <button id='graphButton' type="button">Graph</button>
+                    <button id='clearButton' type="button">Clear</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section>
+        <div id='equationList'>
+
+        </div>
+        <div id='graphContainer'>
+            <h2>Graph</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                <symbol id='axisSymbol'></symbol>
+                <g id='axis' stroke="#999999"></g>
+                <g>
+                    <use id='use' xlink:href="#graphContents" />
+                </g>
+                <symbol id='graphContents' viewBox="0 0 500 500" width="100%" height="100%"></symbol>
+            </svg>
+        </div>
+        <div id='leftGraphContainer'>
+            <h3>Left Sum</h3>
+            <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                    <symbol id='leftAxisSymbol'></symbol>
+                    <g id='axisLeft' stroke="#999999"></g>
+                    <g>
+                        <use id='useLeft' xlink:href="#leftGraphContents" />
+                    </g>
+                    <symbol id='leftGraphContents' viewBox="0 0 500 500" width="100%" height="100%"></symbol>
+                </svg>
+                <figcaption id="leftSum"></figcaption>
+            </figure>
+        </div>
+        <div id='rightGraphContainer'>
+            <h3>Right Sum</h3>
+            <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                    <symbol id='rightAxisSymbol'></symbol>
+                    <g id='axisRight' stroke="#999999"></g>
+                    <g>
+                        <use id='useRight' xlink:href="#rightGraphContents" />
+                    </g>
+                    <symbol id='rightGraphContents' viewBox="0 0 500 500" width="100%" height="100%"></symbol>
+                </svg>
+                <figcaption id="rightSum"></figcaption>
+            </figure>
+        </div>
+        <div id='integralGraphContainer'>
+            <h3>Integral</h3>
+            <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                    <symbol id='integralAxisSymbol'></symbol>
+                    <g id='axisIntegral' stroke="#999999"></g>
+                    <g>
+                        <use id='useIntegral' xlink:href="#integralGraphContents" />
+                    </g>
+                    <symbol id='integralGraphContents' viewBox="0 0 500 500" width="100%" height="100%"></symbol>
+                </svg>
+                <figcaption id="integral"></figcaption>
+                <figure>
+        </div>
+    </section>
+    <div id='expPop'>
+        <p>Enter Exponent</p>
+        <p>Enter the value for the exponent</p>
+        <div>
+            <label for='equationExpInput'>
+                Exponent:
+            </label>
+            <div id='equationExpDisplay'>
+                <input id='equationExpInput' type="text"></input>
+                <div id='expFormatShown'>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    </math>
+                </div>
+            </div>
+        </div>
+        <input type="button" value="Ok" id="expOK"></input>
+    </div>
+    <div id='numeratorPop'>
+        <p>Enter Numerator</p>
+        <p>Enter the value for the numerator</p>
+        <div>
+            <label for='equationNumInput'>
+                Numerator:
+            </label>
+            <div id='equationNumDisplay'>
+                <input id='equationNumInput' type="text"></input>
+                <div id='numeratorFormatShown'>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    </math>
+                </div>
+            </div>
+        </div>
+        <input type="button" value="Ok" id="numOK"></input>
+    </div>
+    <div id='denomPop'>
+        <p>Enter Denominator</p>
+        <p>Enter the value for the denominator</p>
+        <div>
+            <label for='equationDenomInput'>
+                Denominator:
+            </label>
+            <div id='equationDenomDisplay'>
+                <input id='equationDenomInput' type="text"></input>
+                <div id='denominatorFormatShown'>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    </math>
+                </div>
+            </div>
+        </div>
+        <input type="button" value="Ok" id="denomOK"></input>
+    </div>
+    <script>
+    $(document).ready(function() {
+        swal({
+            title: 'Under Development',
+            text: '<p style="text-align:left">This is very much unfinished.</p><p style="text-align:left; font-size: 1.25em"><strong>At the moment only polynomials are supported</strong></p><p style="text-align:left"> Here is a brief list of updates to come:</p><ol style="text-align:left"><li><span style="text-decoration: line-through;">Update inputs to allow entering exponents and fractions without popups.</span></li><li><span style="text-decoration: line-through;">Change input to be normal text with a rendering of the equation below.  This allows for editing any part of an equation without unnecessary coding</span>  Done. Now using asciimath with mathjax to render user input instead of custom created function to do the same thing.  Also using Math.js to evaluate the functions exactly as they are input... although this may be unnecssary.</li><li>Auto scaling functionalities in the graph.</li><li><span style="text-decoration: line-through;">Complete implementation of implied operations</span>  Done.  This is handled through Math.js</li><li>Improved handling of vertical asymptotes and undefined points</li><li><span style="text-decoration: line-through;">Ability to enter trig functions and roots</span>  Done.  Will add buttons for these later</li><li>Better styles</li></ol>',
+            html: true
+        });
+        $('#expPop').popup();
+        $('#numeratorPop').popup();
+        $('#denomPop').popup();
+    });
+    </script>
+</body>
+
+</html>
