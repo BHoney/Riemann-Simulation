@@ -506,6 +506,8 @@ var Graph = {
                 yVal = this.evaluateEquation(K + (1 / (this.resolution * 100)));
                 path += "L" + (Graph.yAxisPosition + parseFloat((K) * (this.widthx))) + " " + (Graph.xAxisPosition - parseFloat(yVal * this.widthy)) + " ";
             } else {
+                yVal = this.evaluateEquation(K + (1 / (this.resolution * 100)));
+                path += "L" + (Graph.yAxisPosition + parseFloat((K) * (this.widthx))) + " " + (Graph.xAxisPosition - parseFloat(yVal * this.widthy)) + " ";
                 path += " V" + (Graph.xAxisPosition);
                 console.log("asymptote in shaded region");
             }
